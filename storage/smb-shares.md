@@ -25,7 +25,7 @@ One main media share organized as a media library:
   - Jellyfin — family profiles (one per household member)
   - Audiobookshelf — shared listening for me and my partner
   - Navidrome — music streaming, clients connect through it
-  - a TV-streaming app — separate viewer accounts for family members
+  - Nostalgia TV — separate viewer accounts for family members
 - The pattern: storage-level access stays with the admin account, while
   per-person access control happens at the application layer. One write
   path, many read paths, no per-user NAS accounts to maintain.
