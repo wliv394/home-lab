@@ -57,11 +57,11 @@ connection path between the two networks wasn't established — the NAS was
 only reachable from inside its own LAN.
 
 ### Fix
-[CONFIRM — what actually solved it? e.g.: installed the mesh-VPN client on
-the remote devices and signed in; set up the NAS as a subnet router so the
-whole home network was reachable; enabled a route in the VPN admin console;
-fixed DNS so names resolve inside the tunnel.] With the mesh VPN in place,
-services are reachable remotely with zero inbound ports opened on the router.
+Installed the mesh-VPN client (Tailscale) on the NAS and on the devices at
+the remote location, connecting both networks to the same tailnet. With the
+NAS as a node (and subnet routing available), the media services became
+reachable from the remote location over encrypted WireGuard tunnels —
+zero inbound ports opened on the router, nothing exposed to the internet.
 
 ### What I'd do differently
 Set up the mesh VPN from day one, before any service existed — retrofitting
