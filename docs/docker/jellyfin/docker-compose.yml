@@ -1,0 +1,17 @@
+# Jellyfin media server — compose file
+# SANITIZE BEFORE PUBLISHING: no device serials, no real hostnames, no public IPs.
+# Replace /mnt paths with your storage mount, TZ with your timezone.
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    network_mode: host          # or map only the ports you need
+    environment:
+      - TZ=America/New_York     # replace
+    volumes:
+      - /mnt/media:/media:ro    # media library, read-only
+      - ./config:/config
+      - ./cache:/cache
+    devices:
+      - /dev/dri:/dev/dri       # GPU for hardware transcoding, if available
