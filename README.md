@@ -20,9 +20,8 @@ and what I learned, as I work toward CompTIA Network+ and Cisco CCNA.
 
 ## Why I built it this way
 
-**RAID for resilience.** Two large enterprise drives in a mirrored array —
-any single drive failure costs zero data and zero downtime. [FILL IN: your
-actual RAID level and why you chose it — e.g. RAID 1 for a two-bay setup.]
+**RAID 1 for resilience.** Two 8TB drives in a mirror — any single drive failure costs zero data and zero downtime. On a two-bay NAS, redundancy beats capacity: 8TB usable is enough, and the array is the foundation everything else (Docker, media, shares) sits on.
+
 
 **Docker for isolation.** Every service runs in its own container with pinned
 versions. I can rebuild a container from scratch in minutes without touching
@@ -33,9 +32,7 @@ the host or the storage layer.
 encrypted WireGuard mesh. My NAS firewall rules only allow management ports
 from the LAN and Tailscale subnets — everything else gets dropped.
 
-**SMB with least-privilege shares.** [FILL IN: how you split user accounts and
-permissions — e.g. separate admin/user accounts, media read-only vs. docs
-read-write.]
+**SMB with least-privilege shares.** One write path, many read paths. Storage access stays with a single admin account — no per-user NAS accounts to maintain, no ACL surprises. Per-person access happens at the application layer instead: Jellyfin family profiles, Audiobookshelf for shared listening, Navidrome for music, each app enforcing its own user permissions against the same read-only library.
 
 ## What I learned building this
 
@@ -45,10 +42,8 @@ read-write.]
 - Firewall rules per interface/source-subnet on the NAS itself
 - WireGuard fundamentals: how a mesh VPN differs from a traditional
   site-to-site VPN, and why no open inbound ports beats port-forwarding
-- [FILL IN: one or two specific problems you hit and fixed — the best part
-  of a portfolio. Example: "Jellyfin container couldn't reach the tuner on
-  the LAN — the Docker bridge was isolating it; fixed by X."]
-
+- Real incident lessons: media library paths diverging from on-disk folders after reorganizing (three services had indexed the old layout), and retrofitting remote access — the mesh VPN should have been day one, not a retrofit.
+  
 ## Where this is going
 
 I'm studying for **CompTIA Network+**, then **Cisco CCNA**, and expanding the
