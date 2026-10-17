@@ -14,7 +14,7 @@ and what I learned, as I work toward CompTIA Network+ and Cisco CCNA.
 | Layer | What runs there |
 |---|---|
 | Storage | UGREEN NASync NAS, RAID array on enterprise-grade HDDs, SMB shares with per-user permissions |
-| Services | Docker containers: Jellyfin (media server), live-TV streaming stack |
+| Services | Docker containers: Jellyfin (media server), Audiobookshelf, Navidrome, Nostalgia TV |
 | Networking | LAN + Tailscale subnet interfaces, firewall rules restricting management ports by source subnet |
 | Remote access | Tailscale mesh VPN — services reachable remotely without opening inbound ports |
 
