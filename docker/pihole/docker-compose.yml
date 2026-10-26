@@ -1,0 +1,20 @@
+# Pi-hole — network-wide DNS filtering
+# SANITIZE BEFORE PUBLISHING: no real LAN IPs, hostnames, or passwords.
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    network_mode: host              # DNS must own port 53 on the host itself
+    environment:
+      - TZ=America/New_York         # replace
+      - FTLCONF_dns_upstreams=9.9.9.9;149.112.112.112   # Quad9
+      - FTLCONF_webserver_port=8090 # 80/443 already taken on the NAS
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN
+      - SYS_NICE
+# Older Pi-hole v5 images use PIHOLE_DNS_ , WEBPASSWORD and WEB_PORT instead of
+# the FTLCONF_ names above — same meaning, different variable names.
